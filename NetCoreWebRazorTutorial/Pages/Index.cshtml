@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Customers</h1>
+<h3>@Model.Message</h3>
+<div>
+	<a asp-page="./Create">Create</a>
+</div>
+<form method="post">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model.Customers.Any())
+			{
+				@foreach (Customer customer in Model.Customers)
+				{
+					<tr>
+						<td>@customer.Id</td>
+						<td>@customer.Name</td>
+						<td>
+							<a asp-page="./Edit" asp-route-id="@customer.Id">Edit</a>
+							<button type="submit" asp-page-handler="delete" asp-route-id="@customer.Id">Delete</button>
+							@*The asp page handler look the KeyWord delete into the backend model for the method
+							  The On and Async are not added here and the verb is got from the type of request. This case is a submit (POST)*@
+						</td>
+					</tr>
+				}
+			}
+			else
+			{
+				<tr>
+					<td>&nbsp;</td>
+					<td>There is no customer registred.</td>
+					<td>&nbsp;</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</form>

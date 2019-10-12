@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@*The id:int is the routing for the page so we can have on the url Edit/5 and 5 will be the id of the customer.*@
+@model NetCoreWebRazorTutorial.Pages.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Customer - @Model.Customer.Id</h2>
+
+<form method="post">
+	<div asp-validation-summary="All"></div>
+	<input asp-for="Customer.Id" type="hidden" />
+	<div>
+		<label asp-for="Customer.Name"></label>
+		<div>
+			<input asp-for="Customer.Name" />
+			<span asp-validation-for="Customer.Name"></span>
+		</div>
+	</div>
+	<div>
+		<button type="submit">Save</button>
+	</div>
+</form>
+

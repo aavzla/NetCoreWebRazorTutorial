@@ -1,0 +1,17 @@
+﻿@page
+@model NetCoreWebRazorTutorial.Pages.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+<p>Enter your name:</p>
+<form method="post">
+	@*<div asp-validation-summary="All"></div>*@
+	<div>
+		Name: <input asp-for="Customer.Name" />
+		<span asp-validation-for="Customer.Name"></span>
+	</div>
+	<br />
+	<input type="submit" />
+</form>
